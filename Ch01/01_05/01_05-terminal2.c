@@ -4,14 +4,15 @@
 
 int main()
 {
-    char *term;
+  char *term;
 	FILE *tout;
 
-    term = ttyname(STDOUT_FILENO);
+		// remember everithing is a file
+    term = ttyname(STDOUT_FILENO); // get the file path for STD_OUT
     printf("This is terminal %s\n",term);
 
-	/* open the terminal as a file */
-	tout = fopen(term,"w");
+	/* open the terminal as a file */ 
+	tout = fopen(term,"w"); // Open that file
 	if( tout==NULL )
 	{
 		fprintf(stderr,"Unable to open %s\n",term);
@@ -19,9 +20,10 @@ int main()
 	}
 
 	/* output text */
-	fprintf(tout,"Hello to terminal %s\n",term);
+	fprintf(tout,"Hello to terminal %s\n",term); // fprintf to that OUTPUT
 
 	/* close-up */
 	fclose(tout);
     return(0);
 }
+ 

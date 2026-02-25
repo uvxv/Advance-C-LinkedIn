@@ -6,9 +6,11 @@
 int main()
 {
 	int bc,x;
+	char buffer[BUFSIZ];
 
 	/* seed the randomizer */
 	srand( (unsigned)time(NULL) );
+	setvbuf(stdout,buffer, _IONBF, BUFSIZ);
 
 	bc = 0;
 	for( x=0; x<20; x++ )

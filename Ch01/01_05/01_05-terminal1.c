@@ -9,4 +9,4 @@ int main()
     printf("This is terminal %s\n",term);
 
     return(0);
-}
+} 

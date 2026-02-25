@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+ - Modifying the environment in a program dosent affect the terminal's environment
+ - Each program carries its own copy of the environment
+*/
 int main()
 {
     const char newvar[] = "language";
@@ -15,4 +19,4 @@ int main()
     printf("The '%s' variable equals '%s'\n",newvar,getenv(newvar) );
 
     return 0;
-}
+}  

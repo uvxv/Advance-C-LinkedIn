@@ -16,8 +16,8 @@ int main()
     printf("The '%s' variable equals '%s'\n",newvar,getenv(newvar) );
 
 	printf("Removing variable '%s'...",newvar);
-	unsetenv(newvar);
+	unsetenv(newvar); // remove the environment variable
 	printf("done\n");
 
     return 0;
-}
+} 

@@ -7,26 +7,26 @@
 int main()
 {
 	const char filename[] = "sonnet18.txt";
-	int fdes,x;
+	int fdest,x;
 	char buffer[SIZE];
 	size_t r;
 
 	/* low-level open the file, read-only */
-	fdes = open(filename,O_RDONLY);
-	if( fdes==-1 )
+	fdest = open(filename,O_RDONLY);
+	if( fdest==-1 )
 	{
 		fprintf(stderr,"Unable to open %s\n",filename);
 		return(1);
 	}
 
 	/* output file details */
-	printf("File descriptor for %s is %d\n",filename,fdes);
+	printf("File descriptor for %s is %d\n",filename,fdest);
 	puts("File contents:\n");
-	r = read( fdes,buffer,SIZE);
+	r = read( fdest,buffer,SIZE); // read from file, store in buffer, the number of byte to read, return the no. of bytes read
 	for( x=0; x<r; x++ )
 		putchar( buffer[x] );
 
 	/* close-up */
-	close(fdes);
+	close(fdest);
 	return 0;
-}
+} 

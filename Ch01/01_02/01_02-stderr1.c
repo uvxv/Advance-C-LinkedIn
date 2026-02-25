@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> 
 
 int main()
 {
@@ -6,7 +6,12 @@ int main()
 	FILE *f;
 
 	/* file opened without error checking */
-	f = fopen(filename,"w");
+	f = fopen(filename,"r");
+
+	if(f == NULL){
+		fprintf(stderr,"Unable to open %s\n", filename);
+		return 1; // indicate en error
+	}
 	printf("New file created, file number is %d\n",fileno(f));
 	fclose(f);
 

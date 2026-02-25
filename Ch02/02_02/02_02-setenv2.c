@@ -3,7 +3,7 @@
 
 int main()
 {
-	const char varstring[] = "language=C";
+	const char varstring[] = "language=C"; // one shot
     const char newvar[] = "language";
     const char value[] = "C";
 
@@ -16,4 +16,4 @@ int main()
     printf("The '%s' variable equals '%s'\n",newvar,getenv(newvar) );
 
     return 0;
-}
+} 
