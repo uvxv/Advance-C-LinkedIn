@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <locale.h>
 #include <monetary.h>
+/*
+ in linux u need to generate a locale before running the program.
+ using the command $sudo locale-gen en_GB.UTF-8
+*/
 
 int main()
 {
@@ -15,8 +19,8 @@ int main()
         return(1);
     }
 
-    strfmon(buffer,size,"%n",359246.80);
+    strfmon(buffer,size,"%n",359246.80); // not every compiler is compatible
     puts(buffer);
 
     return(0);
-}
+} 

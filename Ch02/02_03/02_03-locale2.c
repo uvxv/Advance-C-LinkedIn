@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <locale.h>
 
+/*
+ - The cahracter sets like currency symbols, UTC which may differ from country to country is known as locale
+*/
 int main()
 {
     struct lconv *locale_ptr;

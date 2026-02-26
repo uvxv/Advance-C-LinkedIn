@@ -1,5 +1,16 @@
 #include <locale.h>
-#include <wchar.h>
+#include <wchar.h> // for unicode/wide chaers
+/*
+	ASCII:
+ - Define 128 character code
+ - Each code fits neatly into a byte (C char data type)
+ - limited
+
+  UNICODE:
+ - Thousand of chars
+ - Greater that one byte
+ - In C this unicode is reffered to "wide characters"
+*/
 
 int main()
 {

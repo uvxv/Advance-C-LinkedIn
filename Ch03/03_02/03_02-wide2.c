@@ -4,12 +4,13 @@
 
 int main()
 {
-	wchar_t hello[] = { 0x263a, 0x48, 0x69, 0x2665, '\n', '\0' };
+    // using string format
+	wchar_t hello[] = L"Hello world\n\0"; // complier inteprets its as wide characters cuz of L
 
 	/* first, set the locale */
     setlocale(LC_ALL,"en_US.UTF-8");
 
-    fputws(hello,stdout);
-
+    fputws(hello,stdout); // file stream redirection
+    wprintf(L"%ls", hello); // same, but differ way
     return 0;
 }

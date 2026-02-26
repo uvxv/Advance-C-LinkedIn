@@ -4,6 +4,10 @@
 int main()
 {
     struct lconv *locale_ptr;
+    char * locale;
+
+    locale = setlocale(LC_C, "");
+    printf("Teh current locale is: %s\n", locale);
 
     locale_ptr = localeconv();
 
@@ -12,4 +16,4 @@ int main()
     printf("Currency symbol: %s\n",locale_ptr->currency_symbol);
 
     return(0);
-}
+} 
