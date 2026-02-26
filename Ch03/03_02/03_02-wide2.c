@@ -11,6 +11,6 @@ int main()
     setlocale(LC_ALL,"en_US.UTF-8");
 
     fputws(hello,stdout); // file stream redirection
-    wprintf(L"%ls", hello); // same, but differ way
+    wprintf(L"%ls", hello); // L"" compiler treat it as a widecharacter string
     return 0;
 }
