@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-
+/*
+ - Threads offer a more elegent way than forking to have a program complete multiple tasks.
+ - Opreates independently
+ - Can be manipulated from the main program
+ - Data can be exchanged between threads
+*/
 void *thread_funct(void *a)
 {
     const int loop=8;
