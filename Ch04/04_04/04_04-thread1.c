@@ -15,7 +15,7 @@ void *thread_funct(void *a)
 
     for( x=0; x<loop; x++ )
     {
-        printf("***\n");
+        printf("%s\n",(char *)a);
         sleep(1);
     }
 
@@ -25,12 +25,13 @@ void *thread_funct(void *a)
 int main()
 {
     char buffer[BUFSIZ];
-    int r;
+    char *string = "this string passed the to seconf thread";
+    int tresult;
     pthread_t thd;
 
     /* spawn the new thread */
-    r = pthread_create( &thd, NULL, thread_funct, NULL);
-    if( r!=0 )
+    tresult = pthread_create( &thd, NULL, thread_funct, string); // thread_func in a seperate thread
+    if( tresult!=0 )
     {
         perror("Thread");
         exit(1);
