@@ -13,10 +13,84 @@ struct stock {
 };
 
 /* open a saved database */
-void open(void) {}
+struct stock * open(void) {
+	struct stock *base, *current ; // base poiter and the looper
+	FILE *fh;
+	int count = 0;
+
+	base = NULL; // init
+	fh = fopen("saved","r");
+	if (fh == NULL){
+		fprintf(stderr, "unable to open the file\n");
+		return (NULL);
+	}
+
+	while(!feof(fh)) // an eof tracker for given stream
+	{
+		if (base == NULL){ // first record
+			base = malloc(sizeof(struct stock));
+			current = base;
+
+			if (base == NULL){
+				fprintf(stderr, "unable to allocate memory\n");
+				exit(1);
+			}
+
+			if (fread(base, sizeof(struct stock), 1, fh) == 0){
+				puts("file is empty\n");
+				free(base);
+				return NULL;
+			}
+
+			count++;
+		}
+		else // if not the first record
+		{
+			if (current->next == NULL) // check if any mem address present before
+				break;
+			
+			current->next = malloc(sizeof(struct stock));
+			if (current->next == NULL){
+				fprintf(stderr, "Unable to allocate mem\n");
+				exit(1);
+			}
+
+			// read the next data to current->next
+			fread(current->next, sizeof(struct stock), 1, fh);
+			current = current->next;
+			count++;
+
+		}
+	}
+
+	printf("%d records read\n\n", count);
+	fclose(fh);
+	return (base);
+
+}
 
 /* output the portfolio */
-void list(void) {}
+void list(struct stock *node_ptr) {
+	if(node_ptr == NULL){
+		puts("Lists empty\n");
+		return;
+	}
+
+	puts("List Portfolio");
+	printf("%-8s%7s%10s%12s\n", "Stock", "Shares", "Price", "Value");
+
+	while(node_ptr){
+		printf("%-8s%7d%10.2f%12.2f\n",
+			   node_ptr->symbol,
+			   node_ptr->quantity,
+			   node_ptr->price,
+			   node_ptr->quantity * node_ptr->price);
+
+		node_ptr = node_ptr->next;
+	}
+	
+	putchar('\n');
+}
 
 /* create a new node/record */
 struct stock * add(void) {
@@ -36,7 +110,7 @@ struct stock * add(void) {
 	scanf("%f", &stk->price);
 	stk->next = NULL;
 
-	puts("[info] node created");
+	puts("[info] node created\n");
 	return(stk);
 }
 
@@ -47,7 +121,29 @@ void edit(void) {}
 void delete(void) {}
 
 /* save the database */
-void save(void) {}
+void save(struct stock *base_ptr ) {
+	FILE *fh;
+
+	if (base_ptr == NULL){
+		puts("List empty\n");
+		return;
+	}
+
+	fh = fopen("saved","w");
+	// use $hexdump -C saved
+	if(fh == NULL){
+		fprintf(stderr, "Unable to create the save file\n");
+		return;
+	}
+
+	while(base_ptr){
+		fwrite(base_ptr, sizeof(struct stock), 1, fh);
+		base_ptr = base_ptr->next;
+	}
+
+	fclose(fh);
+	puts("Data written\n");
+}
 
 int main()
 {
@@ -73,10 +169,10 @@ int main()
 		switch(c)
 		{
 			case 1:
-				open();
+				portfolio = open(); // newly extracted and genrated LL from the file1
 				break;
 			case 2:
-				list();
+				list(portfolio);
 				break;
 			case 3:
 				if( portfolio == NULL ){
@@ -96,7 +192,7 @@ int main()
 				delete();
 				break;
 			case 6:
-				save();
+				save(portfolio);
 				break;
 			case 9:
 				done = TRUE;
