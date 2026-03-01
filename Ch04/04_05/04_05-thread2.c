@@ -15,7 +15,8 @@ void *patiently(void *p)
     fd = *(int *)p;
 
 	puts("THREAD> Waiting patiently...");
-    read(fd,buffer,BUFSIZ);
+    read(fd,buffer,BUFSIZ); // beacase the fd empty at first, the read function starts waiting
+    // eventually the thread entering the block/sleep state
     printf("THREAD> Received: %s",buffer);
 
     return(NULL);
@@ -38,6 +39,7 @@ int main()
 
     /* spawn the thread, passing it the read end of the pipe */
     r = pthread_create( &thd, NULL, patiently, (void *)&fp[FD_READ] );
+    // treat the address of the fp as the pointer to void
     if( r!=0 )
     {
         perror("Thread");

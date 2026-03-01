@@ -6,7 +6,7 @@
 #define FALSE 0
 
 struct stock {
-	char symbol[8];
+	char symbol[8]; // symbol string
 	int quantity;
 	float price;
 	struct stock *next;
@@ -19,7 +19,26 @@ void open(void) {}
 void list(void) {}
 
 /* create a new node/record */
-void add(void) {}
+struct stock * add(void) {
+	struct stock *stk;
+
+	stk = (struct stock *)malloc(sizeof( struct stock));
+	if (stk == NULL){
+		fprintf(stderr,"[malloc] fail to allocate memory");
+		exit(1);
+	}
+
+	printf("stock symbol: ");
+	scanf("%s", stk->symbol);
+	printf("Number of shares: ");
+	scanf("%d", &stk->quantity);
+	printf("Price: ");
+	scanf("%f", &stk->price);
+	stk->next = NULL;
+
+	puts("[info] node created");
+	return(stk);
+}
 
 /* edit an existing node */
 void edit(void) {}
@@ -60,7 +79,15 @@ int main()
 				list();
 				break;
 			case 3:
-				add();
+				if( portfolio == NULL ){
+					portfolio = add();
+				}
+				else{
+					current = portfolio;
+					while(current->next)
+						current = current->next;
+					current->next = add();
+				}
 				break;
 			case 4:
 				edit();

@@ -21,7 +21,7 @@ void list(void) {}
 /* create a new node/record */
 struct stock *add(void)
 {
-	struct stock *a;
+	struct stock *a; 
 
 	/* allocate structure */
 	a = malloc( sizeof(struct stock) );

@@ -27,7 +27,7 @@ int main()
 	void *retval;
 
     /* spawn the new thread */
-    r = pthread_create( &thd, NULL, thread_funct, "***");
+    r = pthread_create( &thd, NULL, thread_funct, "thread 1");
     if( r!=0 )
     {
         perror("Thread");
@@ -35,7 +35,7 @@ int main()
     }
 
 	/* wait for the thread */
-	r = pthread_join( thd, &retval );
+	r = pthread_join( thd, &retval ); // pause the main thread until the thread_1 is terminated
     if( r!=0 )
     {
         perror("Thread join");

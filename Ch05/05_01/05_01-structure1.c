@@ -3,17 +3,20 @@
 #include <string.h>
 
 struct stock {
-	char symbol[8];
-	int quantity;
 	float price;
+	int quantity;
+	char symbol[8];
+	struct stock *nxt_ptr;
 };
 
 int main()
 {
 	struct stock *portfolio;
+	printf("the size of the str");
 
 	/* allocate one stock structure */
-	portfolio = malloc(sizeof(struct stock));
+	portfolio = malloc(sizeof(struct stock)*100); // the array allocated in heap is fixed and grows exponentialy
+	//thats where linked lists come in.
 	if( portfolio==NULL )
 	{
 		fprintf(stderr,"Unable to allocate memory\n");
