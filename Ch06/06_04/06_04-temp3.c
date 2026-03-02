@@ -8,20 +8,22 @@ int main()
 	/* template must end in six Xs */
 	char template[] = "acXXXXXX";
 	/* ten 9-char buffers */
-	char name[10][9];
+	char* name[9];
 	int fd,x;
 
 	for(x=0; x<10; x++ )
 	{
 		/* copy the template */
-		strcpy(name[x],template);
-		fd = mkstemp(name[x]);		/* returns file descriptor */
+		strcpy(name,template); 
+		// the above is beacause each time the mkstemp is called ite replaces the template with name of file created
+		// so next time when creatign it result in duplicate.
+		fd = mkstemp(name);		/* returns file descriptor */
 		if( fd==-1 )
 		{
 			perror("msktemp()");
 			return 1;
 		}
-		printf("Temporary file %s created\n",name[x]);
+		printf("Temporary file %s created\n",name);
 	}
 
 	/* clean-up */

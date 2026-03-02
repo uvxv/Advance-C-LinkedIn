@@ -2,7 +2,7 @@
 
 int main()
 {
-	const int size = 64; // r
+	const int size = 64; // read_only , should be defined when declared
 	char name[size];
 
 	printf("Your name: ");

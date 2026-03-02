@@ -2,11 +2,11 @@
 
 int main()
 {
-	FILE *t;
+	FILE *t; // file handle
 	char buffer[BUFSIZ];
 
 	/* create a temporary file */
-	t = tmpfile();
+	t = tmpfile(); // return 
 	if( t==NULL )
 	{
 		perror("tmpfile()");
