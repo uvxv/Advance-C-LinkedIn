@@ -1,5 +1,8 @@
 #include <stdio.h>
-
+/*
+ - volatile forces teh cpu to fethch data form the memory in each access to a particular var
+ - It prevent compiler to optimize a particular defined variable 
+*/
 void memzero(void *b, int len)
 {
     volatile int x;

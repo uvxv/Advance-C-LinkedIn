@@ -129,7 +129,7 @@ stock *add(void)
 void edit(void) {}
 
 /* remove a node */
-stock *delete_front(stock *ptr)
+stock *delete(stock *ptr)
 {
 	char scan[8];
 	stock *base, *previous;
@@ -267,7 +267,7 @@ int main()
 			edit();
 			break;
 		case 5:
-			portfolio = delete_front(portfolio);
+			portfolio = delete(portfolio);
 			break;
 		case 6:
 			save(portfolio);

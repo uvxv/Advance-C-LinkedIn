@@ -2,7 +2,7 @@
 
 int main()
 {
-	const int size = 64;
+	const int size = 64; // r
 	char name[size];
 
 	printf("Your name: ");

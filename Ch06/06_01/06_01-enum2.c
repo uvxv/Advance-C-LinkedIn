@@ -2,7 +2,7 @@
 
 int main()
 {
-    enum {ALPHA=1,BETA,GAMMA};
+    enum {ALPHA=1,BETA,GAMMA}; // ALPHE is overidded with 1, def=0
     int test;
 
     printf("Which test is this? (1-3): ");
